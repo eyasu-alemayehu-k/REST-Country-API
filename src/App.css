@@ -1,38 +1,346 @@
-.App {
-  text-align: center;
+/* Colors */
+:root {
+  --text_primary: hsl(200, 15%, 8%);
+  --bg_primary: hsl(0, 0%, 98%);
+  --bg_accent: hsl(0, 0%, 100%);
+  --shadow: rgb(222, 222, 222);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.dark {
+  --bg_primary: hsl(207, 26%, 17%);
+  --bg_accent: hsl(209, 23%, 22%);
+  --text_primary: hsl(0, 0%, 98%);
+  --shadow: hsl(204, 44%, 14%);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.app {
   min-height: 100vh;
+  color: var(--text_primary);
+  transition: all 0.5s ease;
+  margin-top: 100px;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+}
+
+.btn {
+  color: var(--text_primary);
+  background: var(--bg_accent);
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 5px 5px 15px var(--shadow);
+}
+
+.shadow {
+  box-shadow: 0 5px 15px var(--shadow);
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  min-height: 100px;
+  background: var(--bg_accent);
+  padding: 30px 20px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+.header .header__heading {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.header__toggle:hover {
+  cursor: pointer;
+}
+.header__toggle p {
+  font-size: 13px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 5px;
 }
 
-.App-link {
-  color: #61dafb;
+/* header style end */
+
+/* home style  */
+
+.home {
+  background: var(--bg_primary);
+  padding: 60px 20px;
+  min-height: 100vh;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.home__filter .home__search input,
+.home__filter .home__select select {
+  background: var(--bg_accent);
+  color: var(--text_primary);
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
+.home__filter .home__search {
+  position: relative;
+  font-size: 16px;
+}
+
+.home__filter .home__search input {
+  padding: 15px 60px;
+  width: 100%;
+}
+
+.home__filter .home__search input::placeholder,
+.home__filter .home__select select {
+  font-size: 15px;
+  color: var(--text_primary);
+}
+
+.home__filter .home__search .search__icon {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.home__filter .home__select {
+  position: relative;
+  margin-top: 20px;
+  max-width: 50%;
+}
+
+.home__filter .home__select select {
+  padding: 15px 20px;
+  padding-right: 60px;
+  appearance: none;
+}
+
+.home__filter .home__select .icon-container {
+  width: 30px;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home__filter .home__select select option {
+  background: var(--bg-accent);
+  color: var(--text_primary);
+}
+
+.home .home__cards {
+  padding: 40px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 40px;
+}
+
+/* home style end */
+
+/* card style */
+
+.card {
+  background: var(--bg_accent);
+  border-radius: 5px;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+
+.card:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.card__container > div {
+  min-height: 180px;
+}
+.home__filter .home__select select {
+  padding: 15px 20px;
+  padding-right: 60px;
+  appearance: none;
+}
+
+.card__container .card__flag img {
+  object-fit: cover;
+  width: 100%;
+  height: 180px;
+}
+
+.card__container .card__info {
+  padding: 0 30px;
+}
+.card__container .card__info .county__name {
+  padding: 10px 0;
+}
+
+.card__container .county__detail p {
+  margin-top: 5px;
+  letter-spacing: 0.5px;
+}
+
+/* card style end */
+
+/* detail style */
+
+.detail {
+  background: var(--bg_primary);
+  padding: 60px 20px;
+  min-height: 100vh;
+}
+
+.detail .detail__btn {
+  padding: 30px 0;
+}
+
+.detail .detail__btn .btn {
+  max-width: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 16px;
+}
+
+.detail .detail__content--wrapper {
+  margin-top: 30px;
+}
+
+.detail .detail__content .detail__flag,
+.detail .detail__content .detail__info {
+  flex-basis: 100%;
+}
+
+.detail .detail__content .detail__flag img {
+  height: 300px;
+  object-fit: cover;
+  box-shadow: 15px 15px 10px var(--shadow);
+}
+
+.detail .detail__content .all__detail .right {
+  margin-top: 30px;
+}
+
+.detail .detail__content .detail__info .country__name {
+  font-size: 18px;
+  padding: 30px 0;
+}
+
+.detail .detail__content .all__detail p {
+  margin-bottom: 10px;
+  font-size: 14px;
+  letter-spacing: 0.1;
+}
+
+.detail .detail__content .border__country {
+  padding: 30px 0;
+}
+
+.detail .detail__content .border__country p {
+  font-size: 18px;
+  white-space: nowrap;
+  margin-bottom: 20px;
+}
+
+.detail .detail__content .border__country .border__btn {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-gap: 5px;
+}
+
+@media (min-width: 40em) {
+  .header,
+  .home,
+  .detail {
+    padding-left: 200px;
+    padding-right: 200px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .header .header__heading {
+    font-size: 24px;
+  }
+
+  .header__toggle p {
+    font-size: 18px;
+  }
+
+  .home__filter .home__search input {
+    padding: 20px 80px;
+    min-width: 30vw;
+  }
+  .home__filter .home__select select {
+    padding: 20px;
+    min-width: 10vw;
+  }
+
+  .home__filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    font-size: 20px;
+  }
+
+  .detail .detail__content {
+    display: flex;
+    justify-content: space-between;
+    gap: 100px;
+  }
+  .detail .detail__content .all__detail {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .detail .detail__content .border__country {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 40px 0;
+  }
+
+  .detail .detail__content .border__country .btn {
+    margin-left: 5px;
+    text-align: center;
+  }
+
+  .detail .detail__content .border__country p {
+    margin-bottom: 0;
+  }
+
+  .detail .detail__content .detail__flag img {
+    height: 400px;
+    object-fit: cover;
+    box-shadow: 15px 15px 10px var(--shadow);
+    border-radius: 5px;
+  }
+
+  .detail .detail__btn .btn {
+    max-width: 140px;
+    font-size: 18px;
+  }
+
+  .detail .detail__content .detail__info .country__name {
+    font-size: 25px;
+    padding: 30px 0;
+  }
+  .detail .detail__content .all__detail p {
+    font-size: 18px;
   }
 }
