@@ -20,7 +20,7 @@ function Detail() {
       });
   }, []);
 
-  let name = searchparams.get("name");
+  let id = searchparams.get("id");
 
 //   console.log(name)
 
@@ -35,12 +35,12 @@ function Detail() {
         {country.length > 0
           ? country
               ?.filter((items) => {
-                return name === null
+                return id === null
                   ? items
-                  : items.name.includes(name);
+                  : items.alpha3Code.includes(id);
               })
               ?.map((items) => (
-                <div className="detail__content " key={name}>
+                <div className="detail__content " key={items.alpha3Code}>
                   <div className="detail__flag">
                     <img src={items.flag} alt="" />
                   </div>
@@ -95,7 +95,7 @@ function Detail() {
                                 return obj.alpha3Code === item ? border_name = obj.name : ''
                             })
                             return(
-                                <button key={index} className="btn" onClick={()=>navigate(`/detail?name=${border_name}`)}>{border_name}</button>
+                                <button key={index} className="btn" onClick={()=>navigate(`/detail?id=${item}`)}>{border_name}</button>
                             )
                         })}
                       </div>

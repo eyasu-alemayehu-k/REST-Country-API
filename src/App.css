@@ -146,9 +146,8 @@ img {
 }
 
 .home .home__cards {
-  padding: 40px 0;
+  padding: 40px 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: 40px;
 }
 
@@ -261,7 +260,7 @@ img {
 .detail .detail__content .border__country .border__btn {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   grid-gap: 5px;
 }
 
@@ -280,6 +279,11 @@ img {
   .header__toggle p {
     font-size: 18px;
   }
+
+  .home .home__cards {
+    padding: 40px 0;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  }  
 
   .home__filter .home__search input {
     padding: 20px 80px;

@@ -1,12 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function Card({name, population, flag, region, capital}) {
+function Card({name, population, flag, region, capital, id}) {
   const navigate = useNavigate();
 
   const f = new Intl.NumberFormat(undefined, {});
   return (
-    <div className="card shadow " onClick={()=>navigate(`/detail?name=${name}`)}>
+    <div className="card shadow " onClick={()=>navigate(`/detail?id=${id}`)}>
       <div className="card__container">
         <div className="card__flag">
           <img src={flag} alt="country flag" />

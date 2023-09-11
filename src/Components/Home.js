@@ -75,6 +75,7 @@ function Home() {
               region={items.region}
               population={items.population}
               capital={items.capital}
+              id={items.alpha3Code}
             />
           ))}
       </div>
