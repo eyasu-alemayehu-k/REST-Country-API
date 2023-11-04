@@ -7,13 +7,15 @@ function Home() {
   const [country, setCountry] = useState([]);
   const [search, setSearch] = useState("");
   const [option, setOption] = useState("");
-
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     fetch("/data.json")
       .then((response) => response.json())
       .then((data) => {
         setCountry(data);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -29,7 +31,7 @@ function Home() {
         <div className="home__search">
           <AiOutlineSearch className="search__icon" />
           <input
-          className="shadow"
+            className="shadow"
             type="text"
             name="search"
             placeholder="Search for a country..."
@@ -38,7 +40,7 @@ function Home() {
         </div>
         <div className="home__select">
           <select
-          className="shadow"
+            className="shadow"
             name="region"
             id=""
             onChange={(e) => setOption(e.target.value)}
@@ -55,30 +57,37 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className="home__cards">
-        {country
-          ?.filter((items) => {
-            return option.toLowerCase() === ""
-              ? items
-              : items.region.toLowerCase().includes(option.toLowerCase());
-          })
-          ?.filter((items) => {
-            return search.toLowerCase() === ""
-              ? items
-              : items.name.toLowerCase().includes(search.toLowerCase());
-          })
-          ?.map((items, index) => (
-            <Card
-              key={index}
-              name={items.name}
-              flag={items.flag}
-              region={items.region}
-              population={items.population}
-              capital={items.capital}
-              id={items.alpha3Code}
-            />
-          ))}
-      </div>
+      {isLoading ? (
+        <div className="detail_loading">
+            <img src="/loading.gif" alt="loading" />
+            <p>Loading you country please wait!</p>
+        </div>
+      ) : (
+        <div className="home__cards">
+          {country
+            ?.filter((items) => {
+              return option.toLowerCase() === ""
+                ? items
+                : items.region.toLowerCase().includes(option.toLowerCase());
+            })
+            ?.filter((items) => {
+              return search.toLowerCase() === ""
+                ? items
+                : items.name.toLowerCase().includes(search.toLowerCase());
+            })
+            ?.map((items, index) => (
+              <Card
+                key={index}
+                name={items.name}
+                flag={items.flag}
+                region={items.region}
+                population={items.population}
+                capital={items.capital}
+                id={items.alpha3Code}
+              />
+            ))}
+        </div>
+      )}
     </div>
   );
 }

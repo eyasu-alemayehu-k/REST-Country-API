@@ -5,6 +5,7 @@ import { BsArrowLeft } from "react-icons/bs";
 function Detail() {
   const [searchparams] = useSearchParams();
   const [country, setCountry] = useState([]);
+
   const navigate = useNavigate();
 
   const f = new Intl.NumberFormat(undefined, {});
@@ -22,7 +23,7 @@ function Detail() {
 
   let id = searchparams.get("id");
 
-//   console.log(name)
+  //   console.log(name)
 
   return (
     <div className="detail">
@@ -35,9 +36,7 @@ function Detail() {
         {country.length > 0
           ? country
               ?.filter((items) => {
-                return id === null
-                  ? items
-                  : items.alpha3Code.includes(id);
+                return id === null ? items : items.alpha3Code.includes(id);
               })
               ?.map((items) => (
                 <div className="detail__content " key={items.alpha3Code}>
@@ -90,13 +89,21 @@ function Detail() {
                       <p className="bold">Border Countries:</p>
                       <div className="border__btn">
                         {items.borders?.map((item, index) => {
-                            let border_name = '';
-                            country.map((obj)=>{
-                                return obj.alpha3Code === item ? border_name = obj.name : ''
-                            })
-                            return(
-                                <button key={index} className="btn" onClick={()=>navigate(`/detail?id=${item}`)}>{border_name}</button>
-                            )
+                          let border_name = "";
+                          country.map((obj) => {
+                            return obj.alpha3Code === item
+                              ? (border_name = obj.name)
+                              : "";
+                          });
+                          return (
+                            <button
+                              key={index}
+                              className="btn"
+                              onClick={() => navigate(`/detail?id=${item}`)}
+                            >
+                              {border_name}
+                            </button>
+                          );
                         })}
                       </div>
                     </div>
